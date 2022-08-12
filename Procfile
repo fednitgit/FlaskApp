@@ -1,1 +1,1 @@
-web: gunicorn ChartApp:app
+web: gunicorn chartApp:app
