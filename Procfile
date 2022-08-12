@@ -1,2 +1,2 @@
-web: python PythonGraphHeroku.py
-worker: python PythonGraphHeroku.py
+web: python hello.py
+worker: python hello.py
