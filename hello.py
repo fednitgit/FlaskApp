@@ -1,5 +1,7 @@
-def hello_world():
-    return 'Hello world!'
-if __name__ == "__main__":
-    g = hello_world
-
+from flask import Flask 
+  
+app = Flask(__name__) 
+  
+@app.route("/") 
+def home_view(): 
+        return "<h1>Welcome to My website!</h1>"
