@@ -1,1 +1,1 @@
-web: gunicorn PythonGraphHeroku:app
+web: gunicorn ChartApp:app
