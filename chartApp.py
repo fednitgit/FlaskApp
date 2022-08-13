@@ -55,10 +55,7 @@ class InteractiveGraph:
     self.x_min = 0
     self.x_max = 10
     self.draw_gui()
-    dummy = plt.figure()
-    new_manager = dummy.canvas.manager
-    new_manager.canvas.figure = self.fig
-    self.fig.set_canvas(new_manager.canvas)
+    
     plt.show()
         
   def draw_gui(self):
@@ -84,6 +81,7 @@ class InteractiveGraph:
     self.btnIncrease = Button(axesIncrease, 'Increase', color = "green")
     self.btnIncrease.on_clicked(self.increase)
     self.btnDecrease.on_clicked(self.decrease)
+        
   def get_coords(self):
     """Get coordinates for the points to draw"""
     xs = np.linspace(self.x_min, self.x_max, self.point_amt)
