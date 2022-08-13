@@ -58,12 +58,12 @@ class InteractiveGraph:
     self.fig.show_figure()
     plt.show()
         
-  def show_figure(self.fig):
+  def show_figure(fig):
   
     dummy = plt.figure()
     new_manager = dummy.canvas.manager
-    new_manager.canvas.figure = self.fig
-    self.fig.set_canvas(new_manager.canvas)
+    new_manager.canvas.figure = fig
+    fig.set_canvas(new_manager.canvas)
   
 
   def draw_gui(self):
