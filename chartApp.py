@@ -33,6 +33,9 @@ def create_figure():
     ys = [random.randint(1, 50) for x in xs]
     axis.plot(xs, ys)
     return fig
+@app.route("/PlotChart")
+def chart():
+  return render_template('PlotChart.html')
 
 if __name__ == "__main__":
   app.run()
