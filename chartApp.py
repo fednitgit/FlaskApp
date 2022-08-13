@@ -73,7 +73,7 @@ def interactivePlot():
         mpld3.save_html(fig,"test.html")
         htmlfile = mpld3.fig_to_html(fig)
         json01 = json.dumps(mpld3.fig_to_dict(fig))
-        return render_template('mpld3Chart.html',json01)
+        return render_template('mpld3Chart.html',jsonValue=json01)
 
 
 def update(val):
