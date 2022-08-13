@@ -44,11 +44,9 @@ def plotchart():
 @app.route("/InteractiveGraph")
 def renderInteractiveGraph():
          g = InteractiveGraph()
-         """html_str = mpld3.fig_to_html(g) """
-         """Html_file= open("index.html","w") """
-         """Html_file.write(html_str) """
-         """Html_file.close() """
-         """return 'index.html' """
+         mpld3.save_html(g,"test.html")
+         mpld3.fig_to_html(g)
+         return 'test.html'
 
 class InteractiveGraph:
   def __init__(self, point_amt = 5):
@@ -57,7 +55,17 @@ class InteractiveGraph:
     self.x_min = 0
     self.x_max = 10
     self.draw_gui()
+    self.show_figure()
     plt.show()
+        
+  def show_figure(self):
+  
+    dummy = plt.figure()
+    new_manager = dummy.canvas.manager
+    new_manager.canvas.figure = self
+    self.set_canvas(new_manager.canvas)
+  
+
   def draw_gui(self):
     """Add GUI elements to the figure"""
     self.fig = plt.figure()
