@@ -55,17 +55,12 @@ class InteractiveGraph:
     self.x_min = 0
     self.x_max = 10
     self.draw_gui()
-    self.show_figure(self.fig)
-    plt.show()
-        
-  def show_figure(fig):
-  
     dummy = plt.figure()
     new_manager = dummy.canvas.manager
-    new_manager.canvas.figure = fig
-    fig.set_canvas(new_manager.canvas)
-  
-
+    new_manager.canvas.figure = self.fig
+    self.fig.set_canvas(new_manager.canvas)
+    plt.show()
+        
   def draw_gui(self):
     """Add GUI elements to the figure"""
     self.fig = plt.figure()
