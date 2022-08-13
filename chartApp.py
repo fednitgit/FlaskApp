@@ -46,7 +46,7 @@ def renderInteractiveGraph():
          g = InteractiveGraph()
          """mpld3.save_html(g.fig,"test.html")"""
          """mpld3.fig_to_html(g.fig)"""
-         return g.render('test.html')
+         return g.fig.render('test.html')
 
 class InteractiveGraph:
   def __init__(self, point_amt = 5):
