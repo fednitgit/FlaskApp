@@ -55,10 +55,10 @@ class InteractiveGraph:
     self.x_min = 0
     self.x_max = 10
     self.draw_gui()
-    self.show_figure()
+    self.fig.show_figure()
     plt.show()
         
-  def show_figure(self):
+  def show_figure(self.fig):
   
     dummy = plt.figure()
     new_manager = dummy.canvas.manager
