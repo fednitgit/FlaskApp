@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Button, TextBox, RangeSlider, Slider, RadioButtons
 import numpy as np
 import mpld3
+import json
 
 app = Flask(__name__)
 @app.route("/") 
@@ -71,7 +72,8 @@ def interactivePlot():
         plt.show()
         mpld3.save_html(fig,"test.html")
         htmlfile = mpld3.fig_to_html(fig)
-        return htmlfile
+        json01 = json.dumps(mpld3.fig_to_dict(fig))
+        return render_template('mpld3Chart.html',json01)
 
 
 def update(val):
