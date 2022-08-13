@@ -16,7 +16,7 @@ import json
 app = Flask(__name__)
 @app.route("/") 
 def home_view(): 
-        return "<h1>Welcome to My website!</h1><br/><a href='/HTMLChart'>1. Chart.js Chart</a><br/><a href='/PlotChart'>2. Plot Chart</a><br/><a href='//InteractivePlot'>3. Interactive Graph</a>"
+        return "<h1>Welcome to My website!</h1><br/><a href='/HTMLChart'>1. Chart.js Chart</a><br/><a href='/PlotChart'>2. Plot Chart</a><br/><a href='/InteractivePlot'>3. Interactive Graph</a>"
 
 @app.route("/HTMLChart")
 def chart():
