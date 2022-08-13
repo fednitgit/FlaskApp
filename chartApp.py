@@ -55,7 +55,7 @@ class InteractiveGraph:
     self.x_min = 0
     self.x_max = 10
     self.draw_gui()
-    self.fig.show_figure()
+    self.show_figure(self.fig)
     plt.show()
         
   def show_figure(fig):
