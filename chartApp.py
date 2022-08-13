@@ -8,14 +8,14 @@ from flask import Response
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
-from matplotlib.widgets import Button, TextBox, RangeSlider
+from matplotlib.widgets import Button, TextBox, RangeSlider, Slider, RadioButtons
 import numpy as np
 import mpld3
 
 app = Flask(__name__)
 @app.route("/") 
 def home_view(): 
-        return "<h1>Welcome to My website!</h1><br/><a href='/HTMLChart'>1. Chart.js Chart</a><br/><a href='/PlotChart'>2. Plot Chart</a><br/><a href='/InteractiveGraph'>3. Interactive Graph</a>"
+        return "<h1>Welcome to My website!</h1><br/><a href='/HTMLChart'>1. Chart.js Chart</a><br/><a href='/PlotChart'>2. Plot Chart</a><br/><a href='//InteractivePlot'>3. Interactive Graph</a>"
 
 @app.route("/HTMLChart")
 def chart():
@@ -40,6 +40,59 @@ def create_figure():
 @app.route("/PlotChart")
 def plotchart():
   return render_template('plotChart.html')
+
+@app.route("/InteractivePlot")
+def interactivePlot():
+        
+        fig = plt.Figure()
+        fig, ax = plt.subplots()
+        plt.subplots_adjust(left=0.25, bottom=0.25)
+        t = np.arange(0.0, 1.0, 0.001)
+        a0 = 5
+        f0 = 3
+        s = a0*np.sin(2*np.pi*f0*t)
+        l, = plt.plot(t, s, lw=2, color='red')
+        plt.axis([0, 1, -10, 10])
+
+        axcolor = 'lightgoldenrodyellow'
+        axfreq = plt.axes([0.25, 0.1, 0.65, 0.03], facecolor=axcolor)
+        axamp = plt.axes([0.25, 0.15, 0.65, 0.03], facecolor=axcolor)
+
+        sfreq = Slider(axfreq, 'Freq', 0.1, 30.0, valinit=f0)
+        samp = Slider(axamp, 'Amp', 0.1, 10.0, valinit=a0)
+        resetax = plt.axes([0.8, 0.025, 0.1, 0.04])
+        button = Button(resetax, 'Reset', color=axcolor, hovercolor='0.975')
+        button.on_clicked(reset)
+
+        rax = plt.axes([0.025, 0.5, 0.15, 0.15], facecolor=axcolor)
+        radio = RadioButtons(rax, ('red', 'blue', 'green'), active=0)
+        radio.on_clicked(colorfunc)
+
+        plt.show()
+        mpld3.save_html(fig,"test.html")
+        htmlfile = mpld3.fig_to_html(fig)
+        return htmlfile
+
+
+def update(val):
+    amp = samp.val
+    freq = sfreq.val
+    l.set_ydata(amp*np.sin(2*np.pi*freq*t))
+    fig.canvas.draw_idle()
+    sfreq.on_changed(update)
+    samp.on_changed(update)
+
+
+
+def reset(event):
+    sfreq.reset()
+    samp.reset()
+
+
+
+def colorfunc(label):
+    l.set_color(label)
+    fig.canvas.draw_idle()
 
 @app.route("/InteractiveGraph")
 def renderInteractiveGraph():
