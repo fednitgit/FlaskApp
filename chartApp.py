@@ -35,7 +35,7 @@ def create_figure():
     return fig
 @app.route("/PlotChart")
 def chart():
-  return render_template('PlotChart.html')
+  return render_template('plotChart.html')
 
 if __name__ == "__main__":
   app.run()
