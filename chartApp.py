@@ -44,11 +44,11 @@ def plotchart():
 @app.route("/InteractiveGraph")
 def renderInteractiveGraph():
         g = InteractiveGraph()
-        html_str = mpld3.fig_to_html(g)
-        Html_file= open("index.html","w")
-        Html_file.write(html_str)
-        Html_file.close()
-        return 'index.html'
+         """html_str = mpld3.fig_to_html(g) """
+         """Html_file= open("index.html","w") """
+         """Html_file.write(html_str) """
+         """Html_file.close() """
+         """return 'index.html' """
 
 class InteractiveGraph:
   def __init__(self, point_amt = 5):
