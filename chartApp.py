@@ -44,7 +44,7 @@ def plotchart():
 @app.route("/InteractiveGraph")
 def renderInteractiveGraph():
          g = InteractiveGraph()
-         mpld3.save_html(g,"test.html")
+         mpld3.save_html(g.fig,"test.html")
          mpld3.fig_to_html(g.fig)
          return 'test.html'
 
